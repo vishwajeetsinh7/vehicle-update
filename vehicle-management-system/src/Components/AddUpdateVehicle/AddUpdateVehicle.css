@@ -1,0 +1,86 @@
+
+body {
+    background-color: #f4f4f9;
+    font-family: Arial, sans-serif;
+  }
+  
+  .form-container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  
+  h2 {
+    text-align: center;
+    color: black;
+    font-weight: bolder;
+  }
+  
+  .form-item {
+    margin: 0px 20px 20px 0px;
+  }
+  
+  .form-item label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: black;
+    font-weight: bold;
+  }
+  
+  .form-item input , select, option {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  
+  
+  .form-item input:focus ,select:focus{
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .error {
+    color: red;
+    font-size: 12px;
+  }
+  
+  .submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0004ff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  a {
+    color: red;
+    font-family: helvetica;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  a:active {
+    color: black;
+  }
+  
+  a:visited {
+    color: purple;
+  }

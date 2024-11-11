@@ -1,0 +1,92 @@
+/* Container styling */
+.services-container {
+    max-width: 800px;
+    margin: 10px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* Header styling */
+h2 {
+    text-align: center;
+    color: #333;
+    font-family: Arial, sans-serif;
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: #007bff;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+/* Table styling */
+.services-table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+}
+
+thead {
+    background-color: #007bff;
+    color: #000;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Row hover effect */
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Button styling */
+button {
+    padding: 8px 12px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+button.update {
+    background-color: #28a745;
+}
+
+button.delete {
+    background-color: #dc3545;
+}
+
+button.update:hover {
+    background-color: #218838;
+}
+
+button.delete:hover {
+    background-color: #c82333;
+}
+
+/* Responsive styling */
+@media (max-width: 600px) {
+    th, td {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    h2, h3 {
+        font-size: 1.1rem;
+    }
+}
