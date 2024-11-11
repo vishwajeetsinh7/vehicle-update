@@ -1,49 +1,153 @@
+/* General container for the page */
 .vehicles-container {
     text-align: center;
     margin: 20px;
+    font-family: 'Arial', sans-serif;
+    background: #f4f6f9;
+    padding: 20px;
+    border-radius: 8px;
 }
 
-table {
-    margin: 0 auto;
-    border-collapse: collapse;
-    width: 80%;
-}
-
-th, td {
-    border: 1px solid #ddd;
-    padding: 10px;
-}
-
-th {
-    background-color: #f4f4f4;
-    font-weight: bold;
-}
-
-img {
-    width: 100px;
-    height: auto;
-}
-
-button {
-    margin: 5px;
-    padding: 5px 10px;
-    border: none;
-    color: white;
-    cursor: pointer;
-}
-
-button:nth-child(1) { /* Update button */
+/* Button for adding new vehicles */
+.add-vehicle-btn {
     background-color: #4CAF50;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
-button:nth-child(2) { /* Delete button */
+.add-vehicle-btn:hover {
+    background-color: #45a049;
+    transform: translateY(-4px);
+}
+
+.add-vehicle-btn:active {
+    transform: translateY(2px);
+}
+
+/* Container for all vehicles */
+.vehicle-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+/* Card style for each vehicle */
+.vehicle-card {
+    background: linear-gradient(135deg, #f9f9f9 50%, #e0f7fa 50%);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.vehicle-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Vehicle image styling */
+.vehicle-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* Vehicle information */
+.vehicle-info {
+    margin-top: 15px;
+    font-size: 1rem;
+}
+
+.vehicle-info h3 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.vehicle-info p {
+    margin: 5px 0;
+    color: #666;
+}
+
+/* Action buttons for each vehicle */
+.vehicle-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Button styles */
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s ease;
+}
+
+.update-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.update-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.delete-btn {
     background-color: #f44336;
+    color: white;
 }
 
-button:nth-child(3) { /* View button */
-    background-color: #008CBA;
+.delete-btn:hover {
+    background-color: #e53935;
+    transform: scale(1.05);
 }
 
-button:hover {
-    opacity: 0.8;
+/* Loading spinner */
+.loading-spinner {
+    font-size: 2rem;
+    color: #00bcd4;
+    margin-top: 50px;
+    animation: spin 1.5s infinite linear;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Error message */
+.error-message {
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: #f44336;
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .vehicle-list {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    
+    .add-vehicle-btn {
+        font-size: 1rem;
+    }
 }

@@ -34,7 +34,7 @@ const Register = () => {
         if (validate()) {
             let values = {name,email,password};
 
-            axios.post("http://localhost:8081/register",values)
+            axios.post("http://localhost:3004/register",values)
             .then(res=> {
                 resetData();
                 if(res.data==="Email already exists"){

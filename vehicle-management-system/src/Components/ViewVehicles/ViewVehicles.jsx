@@ -11,7 +11,7 @@ const ViewVehicles = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get("http://localhost:8081/viewVehicles", {
+        axios.get("http://localhost:3004/viewVehicles", {
             params: { email }
         })
             .then(res => {
@@ -23,28 +23,24 @@ const ViewVehicles = () => {
                 setLoading(false);
             })
             .catch(err => {
-                
                 console.log(err);
                 setError("Error fetching vehicles");
                 setLoading(false);
             });
-    }, []);
+    }, [email]);
 
     const handleUpdate = (id) => {
-        // Update logic here
         navigate(`/updateVehicle/${id}`);
     };
 
     const handleDelete = (id) => {
-        // Delete logic here
         const confirmDelete = window.confirm("Are you sure you want to delete this vehicle?");
         if (confirmDelete) {
-            axios.delete(`http://localhost:8081/deleteVehicle/${id}`)
+            axios.delete(`http://localhost:3004/deleteVehicle/${id}`)
                 .then(res => {
                     if (res.data === "Error Deleting Vehicle") {
                         alert("Error deleting vehicle");
                     } else {
-                        // Filter out the deleted vehicle from the state
                         setVehicles(vehicles.filter(vehicle => vehicle.id !== id));
                         alert("Vehicle deleted successfully");
                     }
@@ -56,56 +52,37 @@ const ViewVehicles = () => {
         }
     };
 
-    const handleadd = ()=>{
-        navigate(`/addVehicle`)
-    }
-    const registeredVehicles = [];
+    const handleAdd = () => {
+        navigate(`/addVehicle`);
+    };
 
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>{error}</div>;
+    if (loading) return <div className="loading-spinner">Loading...</div>;
+    if (error) return <div className="error-message">{error}</div>;
 
     return (
         <div className="vehicles-container">
             <h2>Registered Vehicles</h2>
-            <br />
-            <button onClick={() => handleadd()}>Add Vehicle</button>
+            <button onClick={handleAdd} className="add-vehicle-btn">Add Vehicle</button>
 
-            <br />
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Model</th>
-                        <th>Registration Number</th>
-                        <th>Type</th>
-                        <th>Purchase Date</th>
-                        <th>Image</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {vehicles.map((vehicle) => (
-                        <tr key={vehicle.id}>
-                            <td>{vehicle.model}</td>
-                            <td>{vehicle.number}{registeredVehicles.push(vehicle.number)}</td>
-                            <td>{vehicle.type}</td>
-                            <td>{vehicle.pdate}</td>
-                            <td>
-                                <img
-                                    src={`http://localhost:8081/${vehicle.image}`}
-                                    alt={vehicle.model}
-                                    style={{ width: '100px' }}
-                                />
-                            </td>
-                            <td>
-                                <button onClick={() => handleUpdate(vehicle.id)}>Update</button>
-                                <button onClick={() => handleDelete(vehicle.id)}>Delete</button>
-                                
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            <div className="vehicle-list">
+                {vehicles.map((vehicle) => (
+                    <div key={vehicle.id} className="vehicle-card">
+                        <div className="vehicle-image">
+                            <img src={vehicle.image} alt={vehicle.model} />
+                        </div>
+                        <div className="vehicle-info">
+                            <h3>{vehicle.model}</h3>
+                            <p><strong>Registration Number:</strong> {vehicle.number}</p>
+                            <p><strong>Type:</strong> {vehicle.type}</p>
+                            <p><strong>Purchase Date:</strong> {vehicle.pdate}</p>
+                        </div>
+                        <div className="vehicle-actions">
+                            <button onClick={() => handleUpdate(vehicle._id)} className="update-btn">Update</button>
+                            <button onClick={() => handleDelete(vehicle._id)} className="delete-btn">Delete</button>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

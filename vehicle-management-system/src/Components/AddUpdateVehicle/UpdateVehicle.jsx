@@ -10,33 +10,34 @@ const UpdateVehicle = () => {
     const [registrationNumber, setRegistrationNumber] = useState('');
     const [vehicleType, setVehicleType] = useState('');
     const [purchaseDate, setPurchaseDate] = useState('');
-    const [image, setImage] = useState(null);
+    const [imageUrl, setImageUrl] = useState('');  // Changed to image URL
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
 
     useEffect(() => {
         // Fetch current vehicle details by ID
-        axios.get(`http://localhost:8081/getVehicle/${id}`)
+        axios.get(`http://localhost:3004/getVehicle/${id}`)
             .then(res => {
                 const vehicle = res.data;
                 setModel(vehicle.model);
                 setRegistrationNumber(vehicle.number);
                 setVehicleType(vehicle.type);
                 setPurchaseDate(vehicle.pdate);
-                setImage(vehicle.image);
+                setImageUrl(vehicle.image);  // Initialize with current image URL
             })
             .catch(err => console.log(err));
     }, [id]);
 
     const validate = () => {
         const newErrors = {};
-        const regNumberRegex = /^[A-Z0-9-]+$/;
+        const regNumberRegex = /^[A-Z0-9-]+$/; // Regex for vehicle registration number
 
         if (!model) newErrors.model = 'Vehicle Model is required';
         if (!registrationNumber) newErrors.registrationNumber = 'Vehicle Registration Number is required';
         else if (!regNumberRegex.test(registrationNumber)) newErrors.registrationNumber = 'Invalid Registration Number format';
         if (!vehicleType) newErrors.vehicleType = 'Vehicle Type is required';
         if (!purchaseDate) newErrors.purchaseDate = 'Purchase Date is required';
+        if (!imageUrl) newErrors.imageUrl = 'Vehicle Image URL is required';  // Validation for URL
 
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -45,9 +46,9 @@ const UpdateVehicle = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validate()) {
-            const updatedValues = { id, email, model, registrationNumber, vehicleType, purchaseDate, image };
+            const updatedValues = { id, email, model, registrationNumber, vehicleType, purchaseDate, imageUrl };
 
-            axios.put("http://localhost:8081/updateVehicle", updatedValues)
+            axios.put("http://localhost:3004/updateVehicle", updatedValues)
                 .then(res => {
                     if (res.data === "Error Updating Vehicle") {
                         alert("Error Updating Vehicle");
@@ -110,13 +111,15 @@ const UpdateVehicle = () => {
                     {errors.purchaseDate && <span className="error">{errors.purchaseDate}</span>}
                 </div>
                 <div className="form-item">
-                    <label htmlFor="image">Vehicle Image:</label>
+                    <label htmlFor="imageUrl">Vehicle Image URL:</label>
                     <input
-                        type="file"
-                        id="image"
-                        accept="image/*"
-                        onChange={(e) => setImage(e.target.files[0])}
+                        type="text"
+                        id="imageUrl"
+                        value={imageUrl}
+                        onChange={(e) => setImageUrl(e.target.value)}
+                        placeholder="Enter Image URL"
                     />
+                    {errors.imageUrl && <span className="error">{errors.imageUrl}</span>}
                 </div>
                 <button type="submit" className="submit-button">Update Vehicle</button>
             </form>

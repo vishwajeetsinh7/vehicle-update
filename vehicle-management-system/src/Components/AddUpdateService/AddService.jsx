@@ -14,7 +14,7 @@ const AddService = () => {
 
     // Fetch vehicle registrations from the backend
     useEffect(() => {
-        axios.get('http://localhost:8081/viewRegisteredVehicles', {
+        axios.get('http://localhost:3004/viewRegisteredVehicles', {
             params: { email }
         })
             .then(res => {
@@ -60,7 +60,7 @@ const AddService = () => {
             const serviceData = { email, maintenanceType, dateOfMaintenance, costOfMaintenance, registrationNumber };
 
             // Call API to save service data (POST request to your backend)
-            axios.post('http://localhost:8081/addService', serviceData)
+            axios.post('http://localhost:3004/addService', serviceData)
                 .then(res => {
                     alert('Service registered successfully!');
                     // Clear form or redirect

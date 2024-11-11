@@ -14,7 +14,7 @@ const ViewServices = () => {
 
     // Fetch vehicle registrations from the backend
     useEffect(() => {
-        axios.get('http://localhost:8081/viewRegisteredVehicles', {
+        axios.get('http://localhost:3004/viewRegisteredVehicles', {
             params: { email }
         })
             .then(res => {
@@ -38,7 +38,7 @@ const ViewServices = () => {
     useEffect(() => {
         const fetchServicesForNumber = async (number) => {
             try {
-                const res = await axios.get("http://localhost:8081/viewServiceByNumber", {
+                const res = await axios.get("http://localhost:3004/viewServiceByNumber", {
                     params: { number },
                 });
 
