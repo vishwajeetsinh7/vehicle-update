@@ -3,14 +3,14 @@
     text-align: center;
     margin: 20px;
     font-family: 'Arial', sans-serif;
-    background: #f4f6f9;
+    background: #f5f7fa;
     padding: 20px;
     border-radius: 8px;
 }
 
 /* Button for adding new vehicles */
 .add-vehicle-btn {
-    background-color: #4CAF50;
+    background-color: #007bff;
     color: white;
     padding: 12px 24px;
     border: none;
@@ -18,12 +18,12 @@
     cursor: pointer;
     margin-bottom: 30px;
     font-size: 1.1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
     transition: all 0.3s ease;
 }
 
 .add-vehicle-btn:hover {
-    background-color: #45a049;
+    background-color: #0069d9;
     transform: translateY(-4px);
 }
 
@@ -41,23 +41,24 @@
 
 /* Card style for each vehicle */
 .vehicle-card {
-    background: linear-gradient(135deg, #f9f9f9 50%, #e0f7fa 50%);
+    background: #ffffff;
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
     padding: 20px;
     text-align: left;
     transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
 }
 
 .vehicle-card:hover {
-    transform: translateY(-15px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
 }
 
 /* Vehicle image styling */
 .vehicle-image img {
     width: 100%;
-    height: 200px;
+    height: 180px;
     object-fit: cover;
     border-radius: 12px;
 }
@@ -69,27 +70,27 @@
 }
 
 .vehicle-info h3 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: bold;
     color: #333;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .vehicle-info p {
-    margin: 5px 0;
-    color: #666;
+    margin: 4px 0;
+    color: #6c757d;
 }
 
 /* Action buttons for each vehicle */
 .vehicle-actions {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 /* Button styles */
 button {
-    padding: 10px 20px;
+    padding: 8px 16px;
     border: none;
     border-radius: 6px;
     font-size: 1rem;
@@ -98,39 +99,79 @@ button {
 }
 
 .update-btn {
-    background-color: #4CAF50;
+    background-color: #28a745;
     color: white;
 }
 
 .update-btn:hover {
-    background-color: #45a049;
+    background-color: #218838;
     transform: scale(1.05);
 }
 
 .delete-btn {
-    background-color: #f44336;
+    background-color: #dc3545;
     color: white;
 }
 
 .delete-btn:hover {
-    background-color: #e53935;
+    background-color: #c82333;
     transform: scale(1.05);
+}
+
+.maintenance-btn {
+    background-color: #17a2b8;
+    color: white;
+    border: 1px solid #138496;
+    transition: background-color 0.3s ease;
+}
+
+.maintenance-btn:hover {
+    background-color: #138496;
 }
 
 /* Loading spinner */
 .loading-spinner {
     font-size: 2rem;
-    color: #00bcd4;
+    color: #007bff;
     margin-top: 50px;
     animation: spin 1.5s infinite linear;
 }
 
-.filter { 
+/* Dropdown and filter section */
+.filter {
     max-width: 300px;
     margin: auto;
     margin-block: 2rem;
 }
 
+.filter label {
+    font-weight: bold;
+    color: #495057;
+}
+
+.filter select {
+    margin-left: 10px;
+    padding: 6px 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+/* Close button for modal */
+.close-btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.close-btn:hover {
+    background-color: #c82333;
+}
+
+/* Animation for loading spinner */
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
@@ -139,14 +180,71 @@ button {
 /* Error message */
 .error-message {
     font-size: 1.2rem;
-    color: #fff;
-    background-color: #f44336;
+    color: #ffffff;
+    background-color: #dc3545;
     padding: 15px;
     border-radius: 6px;
     margin-top: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(220, 53, 69, 0.3);
 }
 
+/* Modal for Maintenance Records */
+.maintenance-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.maintenance-content {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.maintenance-content h3 {
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+.maintenance-content input {
+    width: calc(100% - 20px);
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+.add-maintenance-btn { 
+    color: black;
+    background-color: skyblue;
+}
+
+.maintenance-content ul { 
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    gap: 10px;
+}
+
+.maintenance-content ul li { 
+    background-color: beige;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid grey;
+}
 /* Mobile responsiveness */
 @media (max-width: 768px) {
     .vehicle-list {

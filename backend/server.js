@@ -94,6 +94,50 @@ app.post("/addVehicle", async (req, res) => {
   }
 });
 
+
+
+// maintainance
+
+
+// Add Maintenance Record endpoint
+app.post("/addMaintenanceRecord", async (req, res) => {
+  try {
+    const { vehicleId, type, date, cost } = req.body;
+
+    const vehicle = await Vehicle.findById(vehicleId);
+    if (!vehicle) {
+      return res.status(404).json("Vehicle not found");
+    }
+
+    // Add new maintenance record to the vehicle
+    vehicle.maintenanceRecords.push({ type, date, cost });
+    await vehicle.save();
+
+    return res.json(vehicle);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json("Error adding maintenance record");
+  }
+});
+
+
+// Get Maintenance Records for a Vehicle
+app.get("/getMaintenanceRecords/:vehicleId", async (req, res) => {
+  try {
+    const vehicle = await Vehicle.findById(req.params.vehicleId);
+    if (!vehicle) {
+      return res.status(404).json("Vehicle not found");
+    }
+    return res.json(vehicle.maintenanceRecords);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json("Error retrieving maintenance records");
+  }
+});
+
+
+
+
 // View vehicles by email
 app.get("/viewVehicles", async (req, res) => {
   try {
